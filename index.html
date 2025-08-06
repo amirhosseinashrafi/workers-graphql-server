@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد مانیتورینگ کارخانه هوشمند</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="سیستم مانیتورینگ کارخانه هوشمند">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Persian Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>در حال بارگذاری داده‌ها...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <h1 class="header-title">داشبورد مانیتورینگ کارخانه هوشمند</h1>
+            <div class="header-info">
+                <span id="lastUpdated">آخرین بروزرسانی: --</span>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span>آفلاین</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🏭 کارخانه هوشمند</h2>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">داشبورد</span>
+            </li>
+            <li class="nav-item" data-section="environment">
+                <span class="nav-icon">🌡️</span>
+                <span class="nav-text">مانیتورینگ محیط</span>
+            </li>
+            <li class="nav-item" data-section="machinery">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">وضعیت تجهیزات</span>
+            </li>
+            <li class="nav-item" data-section="security">
+                <span class="nav-icon">🔒</span>
+                <span class="nav-text">گزارشات امنیتی</span>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="section-header">
+                <h2>داشبورد کلی</h2>
+                <p>نمای کلی از وضعیت فعلی سیستم</p>
+            </div>
+            
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon">🌡️</div>
+                    <div class="kpi-content">
+                        <h3>دمای محیط</h3>
+                        <span class="kpi-value" id="tempValue">--</span>
+                        <span class="kpi-unit">°C</span>
+                    </div>
+                    <div class="kpi-status normal" id="tempStatus"></div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">💨</div>
+                    <div class="kpi-content">
+                        <h3>سطح گاز</h3>
+                        <span class="kpi-value" id="gasValue">--</span>
+                        <span class="kpi-unit">ppm</span>
+                    </div>
+                    <div class="kpi-status normal" id="gasStatus"></div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">⚡</div>
+                    <div class="kpi-content">
+                        <h3>ولتاژ سیستم</h3>
+                        <span class="kpi-value" id="voltageValue">--</span>
+                        <span class="kpi-unit">V</span>
+                    </div>
+                    <div class="kpi-status normal" id="voltageStatus"></div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">🛡️</div>
+                    <div class="kpi-content">
+                        <h3>وضعیت امنیتی</h3>
+                        <span class="kpi-value" id="securityValue">امن</span>
+                        <span class="kpi-unit"></span>
+                    </div>
+                    <div class="kpi-status normal" id="securityStatus"></div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>روند تغییرات دما</h3>
+                </div>
+                <canvas id="temperatureChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Environment Section -->
+        <section id="environment" class="section">
+            <div class="section-header">
+                <h2>مانیتورینگ محیط</h2>
+                <p>نظارت بر شرایط محیطی کارخانه</p>
+            </div>
+            
+            <div class="environment-grid">
+                <div class="gauge-container">
+                    <h3>دمای محیط</h3>
+                    <div class="gauge" id="tempGauge">
+                        <canvas id="tempGaugeCanvas"></canvas>
+                        <div class="gauge-value">
+                            <span id="tempGaugeValue">--</span>
+                            <small>°C</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gauge-container">
+                    <h3>سطح گاز</h3>
+                    <div class="gauge" id="gasGauge">
+                        <canvas id="gasGaugeCanvas"></canvas>
+                        <div class="gauge-value">
+                            <span id="gasGaugeValue">--</span>
+                            <small>ppm</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>تاریخچه نور محیط</h3>
+                    </div>
+                    <canvas id="lightChart"></canvas>
+                </div>
+                
+                <div class="status-indicator">
+                    <h3>حسگر آتش</h3>
+                    <div class="flame-indicator" id="flameIndicator">
+                        <div class="flame-icon">🔥</div>
+                        <span id="flameStatus">عادی</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Machinery Section -->
+        <section id="machinery" class="section">
+            <div class="section-header">
+                <h2>وضعیت تجهیزات</h2>
+                <p>نظارت بر عملکرد دستگاه‌ها و تجهیزات</p>
+            </div>
+            
+            <div class="machinery-grid">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>تاریخچه ولتاژ</h3>
+                    </div>
+                    <canvas id="voltageChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>تاریخچه جریان</h3>
+                    </div>
+                    <canvas id="currentChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>تاریخچه ارتعاشات</h3>
+                    </div>
+                    <canvas id="vibrationChart"></canvas>
+                </div>
+                
+                <div class="machinery-status">
+                    <h3>وضعیت کلی تجهیزات</h3>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span class="status-label">موتور اصلی</span>
+                            <span class="status-value normal" id="motorStatus">عادی</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">سیستم برق</span>
+                            <span class="status-value normal" id="powerStatus">عادی</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">سنسور فاصله</span>
+                            <span class="status-value normal" id="ultrasonicStatus">عادی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section id="security" class="section">
+            <div class="section-header">
+                <h2>گزارشات امنیتی</h2>
+                <p>رویدادهای امنیتی و هشدارها</p>
+            </div>
+            
+            <div class="security-overview">
+                <div class="security-stats">
+                    <div class="stat-card">
+                        <h4>کل رویدادها</h4>
+                        <span id="totalEvents">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>هشدارهای صوتی</h4>
+                        <span id="soundAlerts">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>هشدارهای آتش</h4>
+                        <span id="fireAlerts">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="security-log">
+                <h3>گزارش رویدادهای امنیتی</h3>
+                <div class="log-container" id="securityLogContainer">
+                    <div class="log-item">
+                        <span class="log-time">--</span>
+                        <span class="log-message">در انتظار داده...</span>
+                        <span class="log-type info">اطلاعات</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+    
+    <!-- PWA Installation -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
