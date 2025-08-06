@@ -1,0 +1,149 @@
+{
+  "name": "داشبورد مانیتورینگ کارخانه هوشمند",
+  "short_name": "کارخانه هوشمند",
+  "description": "سیستم مانیتورینگ و کنترل کارخانه هوشمند با قابلیت نمایش داده‌های حسگرها",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#1a1a2e",
+  "orientation": "portrait-primary",
+  "lang": "fa",
+  "dir": "rtl",
+  "scope": "/",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiByeD0iOCIgZmlsbD0iIzFhMWEyZSIvPgo8cGF0aCBkPSJNMTIgMjBIMzZWMzJIMTJWMjBaIiBmaWxsPSIjNThhNmZmIiBmaWxsLW9wYWNpdHk9IjAuMyIvPgo8cGF0aCBkPSJNMTYgMTZIMzJWMjBIMTZWMTZaIiBmaWxsPSIjNThhNmZmIi8+CjxwYXRoIGQ9Ik0yMCAzMkgyOFYzNkgyMFYzMloiIGZpbGw9IiM1OGE2ZmYiLz4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyNiIgcj0iMiIgZmlsbD0iIzU4YTZmZiIvPgo8Y2lyY2xlIGN4PSIyOCIgY3k9IjI2IiByPSIyIiBmaWxsPSIjNThhNmZmIi8+Cjx0ZXh0IHg9IjI0IiB5PSIxMyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiNmMGY2ZmMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfj60iPC90ZXh0Pgo8L3N2Zz4K",
+      "sizes": "48x48",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNzIiIHZpZXdCb3g9IjAgMCA3MiA3MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjcyIiBoZWlnaHQ9IjcyIiByeD0iMTIiIGZpbGw9IiMxYTFhMmUiLz4KPHBhdGggZD0iTTE4IDMwSDU0VjQ4SDE4VjMwWiIgZmlsbD0iIzU4YTZmZiIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHA="
+      "sizes": "72x72",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMTYiIGZpbGw9IiMxYTFhMmUiLz4KPHBhdGggZD0iTTI0IDQwSDcyVjY0SDI0VjQwWiIgZmlsbD0iIzU4YTZmZiIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHA="
+      "sizes": "96x96",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjE0NCIgdmlld0JveD0iMCAwIDE0NCAxNDQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNDQiIGhlaWdodD0iMTQ0IiByeD0iMjQiIGZpbGw9IiMxYTFhMmUiLz4KPHA="
+      "sizes": "144x144",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMzIiIGZpbGw9IiMxYTFhMmUiLz4KPHA="
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9IiMxYTFhMmUiLz4KPHA="
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjU2OCIgdmlld0JveD0iMCAwIDMyMCA1NjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iNTY4IiBmaWxsPSIjMGQxMTE3Ii8+Cjx0ZXh0IHg9IjE2MCIgeT0iMjg0IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzU4YTZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K/Yp9i02oDHlLizINiv2iBZg46N7dqM7q67zj48L3RleHQ+Cjx0ZXh0IHg9IjE2MCIgeT0iMzIwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzhmOTQ5ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2YXYp9mG24zYqtmI2LHbjI2Ygtin26zYp9iv2iBCb3VTYjCGwYZBajJE2YfYr9mC2LjZhQ=",
+      "sizes": "320x568",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "نمای موبایل داشبورد"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyNCIgaGVpZ2h0PSI3NjgiIHZpZXdCb3g9IjAgMCAxMDI0IDc2OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwMjQiIGhlaWdodD0iNzY4IiBmaWxsPSIjMGQxMTE3Ii8+Cjx0ZXh0IHg9IjUxMiIgeT0iMzg0IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzU4YTZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TNTM1F7TGbTG5PTUM11+5L3hGP5cWXNrZXR0OHlNdNE0t1LT1HFzGPT2NT2nf1JrGrjATtGrq7pQhbI1TGDQrxlGC+nRPTD6dZP7Q==",
+      "sizes": "1024x768",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "نمای دسکتاپ داشبورد"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "داشبورد کلی",
+      "short_name": "داشبورد",
+      "description": "مشاهده وضعیت کلی سیستم",
+      "url": "/?section=dashboard",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIGZpbGw9IiM1OGE2ZmYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAzaDhWMTFIM1Yzem0xMCAwaDhWMTFoLThWM3pNMyAxM2g4VjIxSDNWMTN6bTEwIDBoOFYyMWgtOFYxM3oiLz48L3N2Zz4=",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "مانیتورینگ محیط",
+      "short_name": "محیط",
+      "description": "نظارت بر شرایط محیطی",
+      "url": "/?section=environment",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIGZpbGw9IiM1OGE2ZmYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTQgNmgzdjJIMTRWNnptMCAzaDN2MkgxNFY5em0wIDNoM3YySDE0VjEyem0tOSA0SDJWOGgzVjZ6IiBmaWxsPSIjNThhNmZmIi8+PC9zdmc+",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "وضعیت تجهیزات",
+      "short_name": "تجهیزات",
+      "description": "کنترل دستگاه‌ها و ماشین‌آلات",
+      "url": "/?section=machinery",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIGZpbGw9IiM1OGE2ZmYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMmM1LjUgMCAxMCA0LjUgMTAgMTBzLTQuNSAxMC0xMCAxMFMyIDcgMTQuNSAyIDEyIDJaTTggMTNjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNCIgZmlsbD0iIzU4YTZmZiIvPjwvc3ZnPg==",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "گزارشات امنیتی",
+      "short_name": "امنیت",
+      "description": "رویدادها و هشدارهای امنیتی",
+      "url": "/?section=security",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIGZpbGw9IiM1OGE2ZmYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMUwyMSA1VjExYzAgNS41NS0zLjg0IDEwLjc0LTkgMTItNS4xNi0xLjI2LTkuNi40NS05IDEyVjVMMTIgMSIgZmlsbD0iIzU4YTZmZiIvPjwvc3ZnPg==",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "share_target": {
+    "action": "/share-data",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "csvFile",
+          "accept": [".csv", "text/csv"]
+        }
+      ]
+    }
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "capture_links": "existing-client-navigate",
+  "protocol_handlers": [],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "text/csv": [".csv"]
+      },
+      "launch_type": "single-client"
+    }
+  ]
+}
