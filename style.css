@@ -399,6 +399,10 @@ body {
     padding: 24px;
     margin-bottom: 30px;
     transition: all 0.3s ease;
+    position: relative;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
 }
 
 .chart-container:hover {
@@ -408,6 +412,7 @@ body {
 
 .chart-header {
     margin-bottom: 20px;
+    flex-shrink: 0;
 }
 
 .chart-header h3 {
@@ -420,6 +425,25 @@ body {
 .chart-header p {
     color: var(--text-secondary);
     font-size: 0.9rem;
+}
+
+/* Chart Canvas Container */
+.chart-canvas-container {
+    position: relative;
+    flex: 1;
+    min-height: 300px;
+    max-height: 400px;
+    width: 100%;
+}
+
+.chart-container canvas {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
 }
 
 /* ===== Environment Section ===== */
@@ -438,6 +462,10 @@ body {
     padding: 24px;
     text-align: center;
     transition: all 0.3s ease;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .gauge-container:hover {
@@ -456,12 +484,15 @@ body {
     position: relative;
     width: 200px;
     height: 120px;
-    margin: 0 auto 20px;
+    margin: 0 auto;
+    flex-shrink: 0;
 }
 
 .gauge canvas {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 200px;
+    max-height: 120px;
 }
 
 .gauge-value {
@@ -793,6 +824,19 @@ body {
         height: 100px;
     }
     
+    .chart-container {
+        min-height: 300px;
+    }
+    
+    .chart-canvas-container {
+        min-height: 250px;
+        max-height: 300px;
+    }
+    
+    .gauge-container {
+        min-height: 250px;
+    }
+    
     .log-item {
         flex-direction: column;
         align-items: flex-start;
@@ -834,9 +878,22 @@ body {
         padding: 16px;
     }
     
+    .chart-container {
+        min-height: 280px;
+    }
+    
+    .chart-canvas-container {
+        min-height: 220px;
+        max-height: 280px;
+    }
+    
     .gauge {
         width: 140px;
         height: 80px;
+    }
+    
+    .gauge-container {
+        min-height: 220px;
     }
     
     .gauge-value span {

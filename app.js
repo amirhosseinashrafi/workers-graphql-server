@@ -201,17 +201,42 @@ function switchSection(sectionName) {
         switch(sectionName) {
             case 'dashboard':
                 updateDashboard();
+                if (charts.temperature) {
+                    charts.temperature.resize();
+                    charts.temperature.update('none');
+                }
                 break;
             case 'environment':
                 updateEnvironment();
+                if (charts.light) {
+                    charts.light.resize();
+                    charts.light.update('none');
+                }
                 break;
             case 'machinery':
                 updateMachinery();
+                ['voltage', 'current', 'vibration'].forEach(chartName => {
+                    if (charts[chartName]) {
+                        charts[chartName].resize();
+                        charts[chartName].update('none');
+                    }
+                });
                 break;
             case 'security':
                 updateSecurity();
                 break;
         }
+        
+        // Force chart containers to maintain proper dimensions
+        setTimeout(() => {
+            document.querySelectorAll('.chart-canvas-container').forEach(container => {
+                const canvas = container.querySelector('canvas');
+                if (canvas && container.offsetParent !== null) { // Only visible containers
+                    canvas.style.width = '100%';
+                    canvas.style.height = '100%';
+                }
+            });
+        }, 50);
     }, 100);
 }
 
@@ -303,6 +328,7 @@ function createTemperatureChart() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            resizeDelay: 200,
             plugins: {
                 legend: {
                     labels: {
@@ -313,17 +339,28 @@ function createTemperatureChart() {
             },
             scales: {
                 x: {
-                    ticks: { color: '#8b949e', font: { family: 'Vazirmatn' } },
+                    ticks: { 
+                        color: '#8b949e', 
+                        font: { family: 'Vazirmatn' },
+                        maxTicksLimit: 10
+                    },
                     grid: { color: 'rgba(139, 148, 158, 0.2)' }
                 },
                 y: {
-                    ticks: { color: '#8b949e', font: { family: 'Vazirmatn' } },
+                    ticks: { 
+                        color: '#8b949e', 
+                        font: { family: 'Vazirmatn' }
+                    },
                     grid: { color: 'rgba(139, 148, 158, 0.2)' }
                 }
             },
             animation: {
                 duration: 1000,
                 easing: 'easeInOutQuart'
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
             }
         }
     });
@@ -468,6 +505,7 @@ function createLightChart() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            resizeDelay: 200,
             plugins: {
                 legend: {
                     labels: {
@@ -478,13 +516,24 @@ function createLightChart() {
             },
             scales: {
                 x: {
-                    ticks: { color: '#8b949e', font: { family: 'Vazirmatn' } },
+                    ticks: { 
+                        color: '#8b949e', 
+                        font: { family: 'Vazirmatn' },
+                        maxTicksLimit: 10
+                    },
                     grid: { color: 'rgba(139, 148, 158, 0.2)' }
                 },
                 y: {
-                    ticks: { color: '#8b949e', font: { family: 'Vazirmatn' } },
+                    ticks: { 
+                        color: '#8b949e', 
+                        font: { family: 'Vazirmatn' }
+                    },
                     grid: { color: 'rgba(139, 148, 158, 0.2)' }
                 }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
             }
         }
     });
@@ -621,6 +670,7 @@ function getChartOptions() {
     return {
         responsive: true,
         maintainAspectRatio: false,
+        resizeDelay: 200,
         plugins: {
             legend: {
                 labels: {
@@ -631,12 +681,29 @@ function getChartOptions() {
         },
         scales: {
             x: {
-                ticks: { color: '#8b949e', font: { family: 'Vazirmatn' } },
+                ticks: { 
+                    color: '#8b949e', 
+                    font: { family: 'Vazirmatn' },
+                    maxTicksLimit: 12
+                },
                 grid: { color: 'rgba(139, 148, 158, 0.2)' }
             },
             y: {
-                ticks: { color: '#8b949e', font: { family: 'Vazirmatn' } },
+                ticks: { 
+                    color: '#8b949e', 
+                    font: { family: 'Vazirmatn' }
+                },
                 grid: { color: 'rgba(139, 148, 158, 0.2)' }
+            }
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index'
+        },
+        elements: {
+            point: {
+                radius: 3,
+                hoverRadius: 6
             }
         }
     };
@@ -943,18 +1010,32 @@ function updateChartData(chart, newData) {
 /**
  * Handle window resize
  */
+let resizeTimeout;
 window.addEventListener('resize', () => {
-    // Redraw gauges on resize
-    if (currentSection === 'environment') {
-        setTimeout(updateEnvironment, 100);
-    }
-    
-    // Update charts
-    Object.values(charts).forEach(chart => {
-        if (chart && chart.resize) {
-            chart.resize();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Redraw gauges on resize
+        if (currentSection === 'environment') {
+            updateEnvironment();
         }
-    });
+        
+        // Update charts with proper resize
+        Object.values(charts).forEach(chart => {
+            if (chart && chart.resize) {
+                chart.resize();
+                chart.update('none'); // Update without animation
+            }
+        });
+        
+        // Force chart containers to maintain proper dimensions
+        document.querySelectorAll('.chart-canvas-container').forEach(container => {
+            const canvas = container.querySelector('canvas');
+            if (canvas) {
+                canvas.style.width = '100%';
+                canvas.style.height = '100%';
+            }
+        });
+    }, 250);
 });
 
 // Start periodic refresh (optional)
